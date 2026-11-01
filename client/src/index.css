@@ -6,9 +6,10 @@
   --color-ink: #242424;
   --color-muted: #6b6b6b;
   --color-line: #e6e6e6;
+  --color-paper: #faf9f6;
   --color-accent: #1a8917;
 }
 
 html { -webkit-font-smoothing: antialiased; }
-body { @apply bg-white font-sans text-ink; }
+body { @apply bg-paper font-sans text-ink; }
 :focus-visible { @apply outline-2 outline-offset-2 outline-ink; }
