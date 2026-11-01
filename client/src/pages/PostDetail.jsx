@@ -68,6 +68,7 @@ export default function PostDetail() {
                 </button>
               )}
             </div>
+            {post.image && <img src={post.image} alt="" className="mt-8 max-h-[32rem] w-full rounded object-cover" />}
             <div className="mt-8 whitespace-pre-wrap break-words font-serif text-xl leading-[1.8]">{post.content}</div>
             <div className="mt-10 flex items-center gap-6 border-y border-line py-4">
               <LikeButton

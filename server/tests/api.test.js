@@ -68,18 +68,28 @@ test('protected routes reject anonymous and forged tokens', async () => {
   assert.equal(res.status, 401)
 })
 
-test('create post: validation + success', async () => {
-  let r = await alice('POST', '/posts', { title: 'x', content: 'y' })
+test('create post: requires a valid uploaded image and returns it', async () => {
+  const image = 'data:image/png;base64,aGVsbG8='
+  let r = await alice('POST', '/posts', { title: 'x', content: 'y', image })
   assert.equal(r.status, 400)
   r = await alice('POST', '/posts', { title: 'Hello world', content: 'This is my first story.' })
+  assert.equal(r.status, 400); assert.ok(r.body.errors.image)
+  r = await alice('POST', '/posts', { title: 'Hello world', content: 'This is my first story.', image: 'data:text/plain;base64,aGVsbG8=' })
+  assert.equal(r.status, 400); assert.ok(r.body.errors.image)
+  r = await alice('POST', '/posts', { title: 'Hello world', content: 'This is my first story.', image })
   assert.equal(r.status, 201); postId = r.body.post.id
+  assert.equal(r.body.post.image, image)
   assert.equal(r.body.post.author_name, creds('alice').username); assert.ok(r.body.post.created_at)
 })
 
 test('list + get posts (public), 404s', async () => {
   const list = await anon('GET', '/posts')
-  assert.ok(list.body.posts.some((p) => p.id === postId))
-  assert.equal((await anon('GET', `/posts/${postId}`)).body.post.title, 'Hello world')
+  const listedPost = list.body.posts.find((p) => p.id === postId)
+  assert.ok(listedPost)
+  assert.equal(listedPost.image, 'data:image/png;base64,aGVsbG8=')
+  const detail = await anon('GET', `/posts/${postId}`)
+  assert.equal(detail.body.post.title, 'Hello world')
+  assert.equal(detail.body.post.image, 'data:image/png;base64,aGVsbG8=')
   assert.equal((await anon('GET', '/posts/999999')).status, 404)
   assert.equal((await anon('GET', '/posts/abc')).status, 404)
 })

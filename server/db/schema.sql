@@ -14,9 +14,11 @@ CREATE TABLE IF NOT EXISTS posts (
   user_id    BIGINT       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   title      VARCHAR(255) NOT NULL,
   content    TEXT         NOT NULL,
+  image      TEXT,
   created_at TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS image TEXT;
 CREATE INDEX IF NOT EXISTS idx_posts_user_id    ON posts(user_id);
 CREATE INDEX IF NOT EXISTS idx_posts_created_at ON posts(created_at DESC);
 

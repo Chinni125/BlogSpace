@@ -1,16 +1,16 @@
 import { query } from '../config/db.js'
 
 const SELECT = `
-  SELECT p.id, p.title, p.content, p.created_at, p.user_id,
+  SELECT p.id, p.title, p.content, p.image, p.created_at, p.user_id,
          u.username AS author_name,
          (SELECT COUNT(*)::int FROM likes    l WHERE l.post_id = p.id) AS like_count,
          (SELECT COUNT(*)::int FROM comments c WHERE c.post_id = p.id) AS comment_count
     FROM posts p JOIN users u ON u.id = p.user_id`
 
-export async function createPost({ userId, title, content }) {
+export async function createPost({ userId, title, content, image }) {
   const { rows } = await query(
-    'INSERT INTO posts (user_id, title, content) VALUES ($1, $2, $3) RETURNING id',
-    [userId, title, content]
+    'INSERT INTO posts (user_id, title, content, image) VALUES ($1, $2, $3, $4) RETURNING id',
+    [userId, title, content, image]
   )
   return getPostById(rows[0].id)
 }

@@ -13,6 +13,7 @@ export default function PostCard({ post }) {
         <span className="font-medium">{post.author_name}</span>
       </p>
       <Link to={to} className="group mt-3 block">
+        {post.image && <img src={post.image} alt="" className="mb-4 max-h-72 w-full rounded object-cover" />}
         <h2 className="font-serif text-2xl font-bold leading-snug tracking-tight group-hover:underline">{post.title}</h2>
         <p className="mt-2 line-clamp-3 break-words font-serif text-lg leading-relaxed text-muted">{excerpt}</p>
       </Link>
