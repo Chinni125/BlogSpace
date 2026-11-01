@@ -25,6 +25,15 @@ export default function Home() {
         <p className="mt-3 text-lg text-muted">Read what the community is writing — or write your own.</p>
       </header>
 
+      <section className="my-8 overflow-hidden rounded-xl" aria-label="Blogging banner">
+        <img
+          className="h-48 w-full object-cover sm:h-64"
+          src="https://plus.unsplash.com/premium_photo-1792760270482-e14abda37d2f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+          alt="A scene to inspire your next story"
+          fetchPriority="high"
+        />
+      </section>
+
       {error && <ErrorState message={error} onRetry={load} />}
       {!posts && !error && <div aria-busy="true"><PostSkeleton /><PostSkeleton /><PostSkeleton /></div>}
       {posts?.length === 0 && (
