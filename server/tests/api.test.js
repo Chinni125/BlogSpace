@@ -68,12 +68,17 @@ test('protected routes reject anonymous and forged tokens', async () => {
   assert.equal(res.status, 401)
 })
 
-test('create post: validation + success', async () => {
+test('create post: validation + image upload persists and is returned', async () => {
   let r = await alice('POST', '/posts', { title: 'x', content: 'y' })
   assert.equal(r.status, 400)
-  r = await alice('POST', '/posts', { title: 'Hello world', content: 'This is my first story.' })
+  r = await alice('POST', '/posts', { title: 'Bad image', content: 'This story has invalid image data.', image: 'not-an-image' })
+  assert.equal(r.status, 400); assert.ok(r.body.errors.image)
+
+  const image = 'data:image/png;base64,aGVsbG8='
+  r = await alice('POST', '/posts', { title: 'Hello world', content: 'This is my first story.', image })
   assert.equal(r.status, 201); postId = r.body.post.id
   assert.equal(r.body.post.author_name, creds('alice').username); assert.ok(r.body.post.created_at)
+  assert.equal(r.body.post.image, image)
 })
 
 test('list + get posts (public), 404s', async () => {

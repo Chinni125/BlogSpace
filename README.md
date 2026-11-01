@@ -10,4 +10,7 @@ Full-stack blogging app: React (Vite + Tailwind CSS) client, Express API, Postgr
 The API runs on port 5001. Vite proxies `/api` to it.
 Set `CLIENT_ORIGIN` in `server/.env` to the Vite URL.
 
-Tests (API must be running): `cd server && npm test`
+Stories can include an optional PNG, JPEG, GIF, or WebP image (up to 5 MB). Images are stored with the story in PostgreSQL and shown on story cards and detail pages.
+
+Tests (API and database must be running): `cd server && npm test`
+Client checks: `cd client && npm run lint && npm run build`

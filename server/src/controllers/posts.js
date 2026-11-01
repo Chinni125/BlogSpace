@@ -23,12 +23,16 @@ export async function create(req, res, next) {
   try {
     const title = typeof req.body?.title === 'string' ? req.body.title.trim() : ''
     const content = typeof req.body?.content === 'string' ? req.body.content.trim() : ''
+    const image = req.body?.image ?? null
     const errors = {}
     if (title.length < 3 || title.length > 255) errors.title = 'Title must be 3-255 characters'
     if (content.length < 10 || content.length > 20000) errors.content = 'Content must be 10-20000 characters'
+    if (image !== null && (typeof image !== 'string' || !/^data:image\/(png|jpeg|gif|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(image)))
+      errors.image = 'Image must be a PNG, JPEG, GIF, or WebP file'
+    if (typeof image === 'string' && image.length > 7_000_000) errors.image = 'Image must be 5 MB or smaller'
     if (Object.keys(errors).length) return res.status(400).json({ error: 'Validation failed', errors })
 
-    const post = await createPost({ userId: req.user.id, title, content })
+    const post = await createPost({ userId: req.user.id, title, content, image })
     res.status(201).json({ message: 'Post published', post })
   } catch (e) { next(e) }
 }
