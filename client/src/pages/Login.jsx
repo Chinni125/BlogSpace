@@ -41,7 +41,7 @@ export default function Login() {
   if (user && !success) return <Navigate to="/" replace />
 
   return (
-    <AuthLayout subtitle="Sign in to continue to BlogSpace." title="Welcome back" footer={<>New here? <Link className="font-medium text-ink underline" to="/signup">Create an account</Link></>}>
+    <AuthLayout subtitle="Sign in to continue to BlogMake." title="Welcome back" footer={<>New here? <Link className="font-medium text-ink underline" to="/signup">Create an account</Link></>}>
       <form onSubmit={onSubmit} noValidate className="space-y-4">
         <Alert type="success">{success}</Alert>
         <Alert>{formError}</Alert>

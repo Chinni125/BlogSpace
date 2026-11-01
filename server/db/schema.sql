@@ -1,4 +1,4 @@
--- BlogSpace schema (PostgreSQL). Idempotent: safe to re-run.
+-- BlogMake schema (PostgreSQL). Idempotent: safe to re-run.
 
 CREATE TABLE IF NOT EXISTS users (
   id            BIGSERIAL PRIMARY KEY,

@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-white/90 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4 sm:px-6" aria-label="Main">
-        <Link to="/" onClick={close} className="font-serif text-2xl font-bold tracking-tight">BlogSpace</Link>
+        <Link to="/" onClick={close} className="font-serif text-2xl font-bold tracking-tight">BlogMake</Link>
 
         <div className="hidden items-center gap-6 sm:flex">{items}</div>
 
