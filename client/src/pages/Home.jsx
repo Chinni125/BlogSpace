@@ -28,12 +28,19 @@ export default function Home() {
       {error && <ErrorState message={error} onRetry={load} />}
       {!posts && !error && <div aria-busy="true"><PostSkeleton /><PostSkeleton /><PostSkeleton /></div>}
       {posts?.length === 0 && (
-        <EmptyState
-          title="No stories yet"
-          text="Be the first to publish something."
-          actionTo={user ? '/posts/new' : '/signup'}
-          actionLabel={user ? 'Write a story' : 'Get started'}
-        />
+        <>
+          <img
+            src="https://images.unsplash.com/photo-1792980205896-4bc34b91b040?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            alt=""
+            className="mb-6 h-56 w-full rounded-lg object-cover sm:h-72"
+          />
+          <EmptyState
+            title="No stories yet"
+            text="Be the first to publish something."
+            actionTo={user ? '/posts/new' : '/signup'}
+            actionLabel={user ? 'Write a story' : 'Get started'}
+          />
+        </>
       )}
       {posts?.map((p) => <PostCard key={p.id} post={p} />)}
     </Layout>
