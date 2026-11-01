@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <Layout>
       <header className="mb-2 border-b border-line pb-8">
-        <h1 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">Stories worth sharing</h1>
+        <h1 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">Stories that are meant to be heard.</h1>
         <p className="mt-3 text-lg text-muted">Read what the community is writing — or write your own.</p>
       </header>
 
