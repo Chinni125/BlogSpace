@@ -49,7 +49,7 @@ export default function Signup() {
   if (user && !success) return <Navigate to="/" replace />
 
   return (
-    <AuthLayout subtitle="Join Blogspace and start writing." title="Join Blogspace" footer={<>Already have an account? <Link className="font-medium text-ink underline" to="/login">Sign in</Link></>}>
+    <AuthLayout subtitle="Join BlogSpace and start writing." title="Join BlogSpace" footer={<>Already have an account? <Link className="font-medium text-ink underline" to="/login">Sign in</Link></>}>
       <form onSubmit={onSubmit} noValidate className="space-y-4">
         <Alert type="success">{success}</Alert>
         <Alert>{formError}</Alert>

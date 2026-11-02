@@ -1,4 +1,4 @@
-# Blogspace
+# BlogSpace
 
 Full-stack blogging app: React (Vite + Tailwind CSS) client, Express API, PostgreSQL.
 
@@ -10,6 +10,6 @@ Full-stack blogging app: React (Vite + Tailwind CSS) client, Express API, Postgr
 The API runs on port 5001. Vite proxies `/api` to it.
 Set `CLIENT_ORIGIN` in `server/.env` to the Vite URL.
 
-The app is branded Blogspace across its page title and user-facing interface. Blog posts show an estimated reading time based on 200 words per minute, rounded up to at least one minute.
+Blog posts show an estimated reading time based on 200 words per minute, rounded up to at least one minute.
 
 Tests: `cd client && npm test`; API tests (API must be running): `cd server && npm test`
