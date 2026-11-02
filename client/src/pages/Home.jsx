@@ -3,7 +3,6 @@ import { fetchPosts } from '../services/api'
 import { useAuth } from '../context/AuthContext'
 import Layout from '../components/Layout'
 import PostCard from '../components/PostCard'
-import HomeBanner from '../components/HomeBanner'
 import { EmptyState, ErrorState, PostSkeleton } from '../components/ui'
 
 export default function Home() {
@@ -25,8 +24,6 @@ export default function Home() {
         <h1 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">Stories worth sharing</h1>
         <p className="mt-3 text-lg text-muted">Read what the community is writing — or write your own.</p>
       </header>
-
-      <HomeBanner />
 
       {error && <ErrorState message={error} onRetry={load} />}
       {!posts && !error && <div aria-busy="true"><PostSkeleton /><PostSkeleton /><PostSkeleton /></div>}
