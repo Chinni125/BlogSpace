@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { formatDate } from '../utils'
+import { formatDate, getReadingTime } from '../utils'
 
 export default function PostCard({ post }) {
   const excerpt = post.content.length > 200 ? post.content.slice(0, 200).trimEnd() + '…' : post.content
@@ -18,6 +18,7 @@ export default function PostCard({ post }) {
       </Link>
       <p className="mt-4 flex items-center gap-4 text-sm text-muted">
         <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
+        <span>{getReadingTime(post.content)} min read</span>
         <span aria-label={`${post.like_count} likes`}>♥ {post.like_count}</span>
         <span aria-label={`${post.comment_count} comments`}>💬 {post.comment_count}</span>
       </p>
