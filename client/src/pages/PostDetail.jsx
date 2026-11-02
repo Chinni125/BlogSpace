@@ -56,7 +56,7 @@ export default function PostDetail() {
           <Alert>{actionError}</Alert>
           <article className="mt-2">
             <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight sm:text-5xl">{post.title}</h1>
-            <p className="mt-3 text-sm text-muted">{getReadingTime(post.content)} min read</p>
+            <p className="mt-3 text-sm text-red-600">{getReadingTime(post.content)} min read</p>
             <div className="mt-6 flex items-center gap-3 border-b border-line pb-6">
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink font-medium uppercase text-white" aria-hidden="true">{post.author_name[0]}</span>
               <div className="text-sm">

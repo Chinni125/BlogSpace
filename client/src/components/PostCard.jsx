@@ -18,7 +18,7 @@ export default function PostCard({ post }) {
       </Link>
       <p className="mt-4 flex items-center gap-4 text-sm text-muted">
         <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
-        <span>{getReadingTime(post.content)} min read</span>
+        <span className="text-red-600">{getReadingTime(post.content)} min read</span>
         <span aria-label={`${post.like_count} likes`}>♥ {post.like_count}</span>
         <span aria-label={`${post.comment_count} comments`}>💬 {post.comment_count}</span>
       </p>

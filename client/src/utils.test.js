@@ -1,5 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { readFile } from 'node:fs/promises'
 import { getReadingTime } from './utils.js'
 
 const words = (count) => Array.from({ length: count }, (_, index) => `word${index}`).join(' ')
@@ -21,4 +22,14 @@ test('reading time is recalculated from the current content', () => {
   assert.equal(getReadingTime(content), 2)
   content = 'edited'
   assert.equal(getReadingTime(content), 1)
+})
+
+test('reading time is styled red on post cards and post pages', async () => {
+  const [postCard, postDetail] = await Promise.all([
+    readFile(new URL('./components/PostCard.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('./pages/PostDetail.jsx', import.meta.url), 'utf8'),
+  ])
+
+  assert.match(postCard, /<span className="text-red-600">\{getReadingTime\(post\.content\)\} min read<\/span>/)
+  assert.match(postDetail, /<p className="mt-3 text-sm text-red-600">\{getReadingTime\(post\.content\)\} min read<\/p>/)
 })

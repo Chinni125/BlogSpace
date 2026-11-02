@@ -10,6 +10,6 @@ Full-stack blogging app: React (Vite + Tailwind CSS) client, Express API, Postgr
 The API runs on port 5001. Vite proxies `/api` to it.
 Set `CLIENT_ORIGIN` in `server/.env` to the Vite URL.
 
-Reading time is calculated from each post's full content at 200 words per minute, rounded up with a one-minute minimum. It is shown on post cards and below the title on each post page.
+Reading time is calculated from each post's full content at 200 words per minute, rounded up with a one-minute minimum. It is shown in red on post cards and below the title on each post page.
 
 Tests: `cd client && npm test` (reading-time calculation); `cd server && npm test` (API, requires the API to be running).
